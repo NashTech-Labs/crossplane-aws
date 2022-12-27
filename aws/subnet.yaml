@@ -1,0 +1,16 @@
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: knoldus-crossplane-subnet
+  namespace: crossplane
+spec:
+  forProvider:
+    cidrBlock: 10.100.10.0/24
+    vpcIdRef:
+      name: knoldus-crossplane-vpc
+    availabilityZone: us-east-1
+  reclaimPolicy: Delete
+  providerConfigRef:
+    name: crossplane-provider-config
+  providerRef:
+    name: crossplane-provider-config

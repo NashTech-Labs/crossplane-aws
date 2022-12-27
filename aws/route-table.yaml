@@ -1,0 +1,21 @@
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: RouteTable
+metadata:
+  name: knoldus-crossplane-rt
+  namespace: crossplane
+spec:
+  forProvider:
+    vpcIdRef:
+      name: knoldus-crossplane-vpc
+    routes:
+      - destinationCidrBlock: 0.0.0.0/0
+        gatewayIdRef:
+          name: knoldus-ig
+    associations:
+      - subnetIdRef:
+          name: knoldus-crossplane-subnet
+  reclaimPolicy: Delete
+  providerConfigRef:
+    name: crossplane-provider-config
+  providerRef:
+    name: crossplane-provider-config
